@@ -14,7 +14,7 @@ app = typer.Typer()
 
 @app.command()
 def crawl(
-    space_key: Literal["PEX"] = typer.Option(
+    space_key: Literal["PEX", "DCC", "PL"] = typer.Option(
         ..., "--space-key", help="Confluence space key, currently only PEX is supported"
     ),
     cql: str = typer.Option(None, "--cql", help="CQL query to filter pages"),
@@ -48,7 +48,8 @@ def crawl(
                 "include_restricted_content": include_restricted_content,
                 "include_attachments": include_attachments,
                 "url": config.confluence.base_url,
-                "token": config.confluence.token,
+                "api_key": config.confluence.api_key,
+                "username": config.confluence.username,
             },
         )
 

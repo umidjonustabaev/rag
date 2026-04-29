@@ -4,10 +4,20 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
-    { name = "Umidjon Ustabaev", email = "umidjon.ustabaev@softswiss.com" }
+    { name = "Umidjon Ustabaev", email = "umidjon.ustabaev@teepublic.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "fastmcp>=3.2.4",
+    "langchain-google-genai>=4.2.2",
+    "langchain-qdrant>=1.1.0",
+    "pydantic>=2.13.3",
+    "pydantic-settings>=2.14.0",
+    "python-dotenv>=1.2.2",
+    "qdrant-client>=1.17.1",
+    "typer>=0.25.0",
+    "uvicorn>=0.46.0",
+]
 
 [project.scripts]
 mcp-search = "mcp_search:main"
@@ -15,3 +25,33 @@ mcp-search = "mcp_search:main"
 [build-system]
 requires = ["uv_build>=0.8.4,<0.9.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.20.2",
+    "ruff>=0.15.12",
+]
+
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes (unused imports, undefined names)
+    "I",   # isort (import sorting)
+    "B",   # flake8-bugbear (common bugs & design issues)
+    "C4",  # flake8-comprehensions (cleaner list/dict comprehensions)
+    "UP",  # pyupgrade (modernize Python syntax)
+    "N",   # pep8 naming conventions
+    "ANN", # type annotation enforcement
+    "RUF", # ruff-specific rules
+]
+
+[tool.mypy]
+strict = true
+python_version = "3.13"
+ignore_missing_stubs = true

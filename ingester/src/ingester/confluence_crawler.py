@@ -33,7 +33,8 @@ class ConfluenceSpaceCrawlerOptions(BaseModel):
     """Configuration model for ConfluenceSpaceCrawler."""
 
     url: str
-    token: str
+    api_key: str
+    username: str
     space_key: str | None = None
     cql: str | None = None
     keep_markdown_format: bool = False

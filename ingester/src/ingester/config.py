@@ -10,7 +10,8 @@ class QdrantConfig(BaseModel):
 
 
 class ConfluenceConfig(BaseModel):
-    token: str
+    api_key: str
+    username: str
     base_url: str
 
 

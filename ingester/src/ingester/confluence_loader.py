@@ -85,7 +85,7 @@ class ConfluenceLoader(BaseConfluenceLoader):
 
     def __init__(self, parse_with_dockling: bool = False, *args, **kwargs) -> None:
         """Initialize the loader with an option to parse pages with Dockling."""
-        super().__init__(cloud=True, *args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.parse_with_dockling = parse_with_dockling
 
     def process_page(self, page: dict, *args, **kwargs) -> Document:
