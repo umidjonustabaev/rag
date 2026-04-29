@@ -14,8 +14,8 @@ app = typer.Typer()
 
 @app.command()
 def crawl(
-    space_key: Literal["PL"] = typer.Option(
-        ..., "--space-key", help="Confluence space key, currently only PL is supported"
+    space_key: Literal["PEX"] = typer.Option(
+        ..., "--space-key", help="Confluence space key, currently only PEX is supported"
     ),
     cql: str = typer.Option(None, "--cql", help="CQL query to filter pages"),
     include_restricted_content: bool = typer.Option(
@@ -56,3 +56,10 @@ def crawl(
     except ValidationError as exc:
         typer.secho(str(exc), fg=typer.colors.RED, err=True)
         raise typer.Exit(code=2) from exc
+
+def main() -> None:
+    typer.run(crawl)
+
+
+if __name__ == "__main__":
+    main()

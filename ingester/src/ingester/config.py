@@ -12,7 +12,6 @@ class QdrantConfig(BaseModel):
 class ConfluenceConfig(BaseModel):
     token: str
     base_url: str
-    supported_space_keys: list[str] = ["PL"]
 
 
 class EmbeddingConfig(BaseModel):
@@ -35,7 +34,13 @@ class Config(BaseSettings):
     embedding: EmbeddingConfig = Field(default_factory=EmbeddingConfig)
     logging: LoggingConfig = Field(default_factory=LoggingConfig)
 
-    model_config = SettingsConfigDict(env_file=".env", case_sensitive=False, env_ignore_empty=True)
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        case_sensitive=False,
+        env_nested_delimiter="__",
+        env_prefix="INGESTER__",
+        env_ignore_empty=True
+    )
 
 
 @lru_cache
