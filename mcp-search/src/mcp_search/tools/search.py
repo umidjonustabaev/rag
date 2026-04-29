@@ -12,12 +12,13 @@ config = build_app_config()
 
 async def search_confluence(
     query: str,
-    space_key: Literal["PL", "PEX", "DCC"],
     top_k: int = 10,
-) -> list[Document]:
+) -> str:
     """Run similarity search in a Confluence space and return markdown."""
-    collection_name = f"confluence_{space_key.lower()}"
+    collection_name = "confluence_pl"
     store = vector_store(collection_name, config)
     documents = await store.asimilarity_search(query, top_k)
 
-    return documents
+    return "\n\n".join(
+        [document.page_content for document in documents]
+    )
